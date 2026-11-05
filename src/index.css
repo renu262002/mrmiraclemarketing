@@ -1,0 +1,294 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    /* Four Exact Brand Colours */
+    --brand-ruby: #B5003A;
+    --brand-crimson: #D41450;
+    --brand-gold: #D99A24;
+    --brand-champagne: #FFD36A;
+
+    /* Light Theme Surface & Text Tokens */
+    --bg-ivory: #FFFDF9;
+    --bg-warm-cream: #FAF3E6;
+    --text-charcoal: #1A1115;
+    --text-charcoal-muted: #4A3B41;
+    --text-charcoal-subtle: #6E5B62;
+
+    /* Semantic Aliases */
+    --color-ruby: var(--brand-ruby);
+    --color-crimson: var(--brand-crimson);
+    --color-gold: var(--brand-gold);
+    --color-champagne: var(--brand-champagne);
+    --color-bg-deep: var(--bg-ivory);
+    --color-bg-burgundy: var(--bg-warm-cream);
+    --font-heading: 'Space Grotesk', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background-color: var(--bg-ivory);
+    color: var(--text-charcoal);
+  }
+
+  h1, h2, h3, h4, .font-heading {
+    font-family: var(--font-heading);
+    letter-spacing: -0.02em;
+    color: var(--text-charcoal);
+  }
+
+  .font-ui {
+    font-family: var(--font-body);
+  }
+}
+
+/* ==========================================================================
+   ANIMATED FOUR-COLOUR LIGHT THEME GRADIENT BACKGROUND SYSTEM
+   Colours: Ruby Red (#B5003A), Crimson Pink (#D41450),
+            Metallic Gold (#D99A24), Champagne Gold (#FFD36A)
+   Base: Warm White & Soft Ivory (#FFFDF9 / #FAF3E6)
+   ========================================================================== */
+
+@keyframes miracleGradientFlow {
+  0% {
+    transform: translate3d(-3%, -2%, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(3%, 2.5%, 0) scale(1.05);
+  }
+  100% {
+    transform: translate3d(-2%, 3%, 0) scale(1.02);
+  }
+}
+
+@keyframes miracleTrailDrift {
+  0% {
+    transform: translate3d(-6%, 4%, 0) rotate(-12deg) scale(1);
+    opacity: 0.45;
+  }
+  50% {
+    transform: translate3d(5%, -3%, 0) rotate(-8deg) scale(1.06);
+    opacity: 0.65;
+  }
+  100% {
+    transform: translate3d(-3%, -5%, 0) rotate(-14deg) scale(1.02);
+    opacity: 0.48;
+  }
+}
+
+@keyframes miracleGoldHighlight {
+  0% {
+    transform: translate3d(4%, -4%, 0) scale(0.98);
+    opacity: 0.45;
+  }
+  50% {
+    transform: translate3d(-4%, 3%, 0) scale(1.06);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate3d(2%, 4%, 0) scale(1);
+    opacity: 0.5;
+  }
+}
+
+@keyframes miracleParticleFloat {
+  0% {
+    transform: translate3d(0, 0, 0) scale(0.85);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.85;
+  }
+  80% {
+    opacity: 0.65;
+  }
+  100% {
+    transform: translate3d(18px, -110px, 0) scale(1.12);
+    opacity: 0;
+  }
+}
+
+/* Base Flowing Multi-Layer Light Gradient */
+.bg-miracle-mesh {
+  background-color: #FFFDF9;
+  background-image:
+    radial-gradient(ellipse 75% 60% at 15% 18%, rgba(255, 211, 106, 0.34) 0%, transparent 65%),
+    radial-gradient(ellipse 65% 55% at 85% 22%, rgba(181, 0, 58, 0.09) 0%, transparent 62%),
+    radial-gradient(ellipse 60% 50% at 78% 80%, rgba(217, 154, 36, 0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 45% at 20% 82%, rgba(212, 20, 80, 0.08) 0%, transparent 58%),
+    linear-gradient(135deg, #FFFDF9 0%, #FAF3E6 48%, #FFF9EE 78%, #FFFDF9 100%);
+  animation: miracleGradientFlow 22s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+/* Page-Specific Light Gradient Arrangements */
+.bg-theme-home .bg-miracle-mesh {
+  background-image:
+    radial-gradient(ellipse 75% 60% at 18% 20%, rgba(255, 211, 106, 0.36) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 55% at 84% 26%, rgba(181, 0, 58, 0.10) 0%, transparent 60%),
+    radial-gradient(ellipse 65% 55% at 72% 78%, rgba(217, 154, 36, 0.18) 0%, transparent 62%),
+    radial-gradient(ellipse 50% 45% at 24% 85%, rgba(212, 20, 80, 0.08) 0%, transparent 58%),
+    linear-gradient(135deg, #FFFDF9 0%, #FAF2E4 50%, #FFFDF9 100%);
+}
+
+.bg-theme-about .bg-miracle-mesh {
+  background-image:
+    radial-gradient(ellipse 70% 55% at 80% 18%, rgba(255, 211, 106, 0.34) 0%, transparent 64%),
+    radial-gradient(ellipse 65% 55% at 20% 30%, rgba(181, 0, 58, 0.09) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 50% 65%, rgba(217, 154, 36, 0.16) 0%, transparent 62%),
+    radial-gradient(ellipse 55% 45% at 82% 85%, rgba(212, 20, 80, 0.08) 0%, transparent 58%),
+    linear-gradient(150deg, #FFFDF9 0%, #FAF3E6 48%, #FFFBF4 100%);
+}
+
+.bg-theme-services .bg-miracle-mesh {
+  background-image:
+    radial-gradient(ellipse 75% 55% at 50% 15%, rgba(255, 211, 106, 0.32) 0%, transparent 62%),
+    radial-gradient(ellipse 65% 55% at 15% 45%, rgba(181, 0, 58, 0.09) 0%, transparent 64%),
+    radial-gradient(ellipse 60% 50% at 85% 55%, rgba(217, 154, 36, 0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 45% at 30% 88%, rgba(212, 20, 80, 0.08) 0%, transparent 58%),
+    linear-gradient(125deg, #FFFDF9 0%, #FAF2E4 52%, #FFFDF9 100%);
+}
+
+.bg-theme-why-us .bg-miracle-mesh {
+  background-image:
+    radial-gradient(ellipse 70% 55% at 22% 20%, rgba(217, 154, 36, 0.20) 0%, transparent 60%),
+    radial-gradient(ellipse 75% 60% at 78% 30%, rgba(181, 0, 58, 0.09) 0%, transparent 64%),
+    radial-gradient(ellipse 65% 55% at 25% 75%, rgba(255, 211, 106, 0.32) 0%, transparent 62%),
+    radial-gradient(ellipse 55% 45% at 75% 85%, rgba(212, 20, 80, 0.08) 0%, transparent 58%),
+    linear-gradient(140deg, #FFFDF9 0%, #FAF3E6 50%, #FFFDF9 100%);
+}
+
+.bg-theme-contact .bg-miracle-mesh {
+  background-image:
+    radial-gradient(ellipse 70% 55% at 75% 20%, rgba(255, 211, 106, 0.34) 0%, transparent 62%),
+    radial-gradient(ellipse 70% 60% at 20% 35%, rgba(181, 0, 58, 0.09) 0%, transparent 64%),
+    radial-gradient(ellipse 60% 50% at 65% 78%, rgba(217, 154, 36, 0.17) 0%, transparent 58%),
+    radial-gradient(ellipse 55% 45% at 25% 85%, rgba(212, 20, 80, 0.08) 0%, transparent 60%),
+    linear-gradient(135deg, #FFFDF9 0%, #FAF2E4 50%, #FFFDF9 100%);
+}
+
+/* Gentle Crimson-Pink & Ruby-Red Light Wave Layer */
+.bg-crimson-trail {
+  background: linear-gradient(
+    115deg,
+    transparent 20%,
+    rgba(181, 0, 58, 0.06) 42%,
+    rgba(212, 20, 80, 0.08) 52%,
+    rgba(217, 154, 36, 0.10) 64%,
+    transparent 82%
+  );
+  filter: blur(56px);
+  animation: miracleTrailDrift 18s ease-in-out infinite alternate;
+  will-change: transform, opacity;
+}
+
+/* Champagne-Gold & Metallic-Gold Soft Glowing Highlights */
+.bg-gold-aurora {
+  background:
+    radial-gradient(circle at 78% 24%, rgba(255, 211, 106, 0.28) 0%, rgba(217, 154, 36, 0.12) 34%, transparent 62%),
+    radial-gradient(circle at 20% 76%, rgba(217, 154, 36, 0.18) 0%, rgba(181, 0, 58, 0.05) 38%, transparent 65%);
+  filter: blur(44px);
+  animation: miracleGoldHighlight 16s ease-in-out infinite alternate;
+  will-change: transform, opacity;
+}
+
+/* Soft CSS Golden Particles */
+.miracle-particle {
+  position: absolute;
+  border-radius: 9999px;
+  background: radial-gradient(circle, var(--brand-champagne) 0%, var(--brand-gold) 65%, transparent 100%);
+  box-shadow: 0 0 10px rgba(217, 154, 36, 0.55);
+  animation: miracleParticleFloat var(--particle-duration, 12s) ease-in-out var(--particle-delay, 0s) infinite;
+  will-change: transform, opacity;
+}
+
+/* Respect Reduced-Motion Accessibility Settings */
+@media (prefers-reduced-motion: reduce) {
+  .bg-miracle-mesh,
+  .bg-crimson-trail,
+  .bg-gold-aurora,
+  .miracle-particle {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+/* Luxury Warm Ivory & Champagne Glassmorphism */
+.glass-panel {
+  background: rgba(255, 253, 249, 0.86);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(217, 154, 36, 0.28);
+  box-shadow: 0 10px 30px -10px rgba(181, 0, 58, 0.08), 0 4px 16px -4px rgba(217, 154, 36, 0.10);
+}
+
+.glass-panel-glow {
+  background: linear-gradient(145deg, rgba(255, 253, 249, 0.95) 0%, rgba(250, 242, 228, 0.92) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(217, 154, 36, 0.45);
+  box-shadow: 0 16px 40px -12px rgba(181, 0, 58, 0.12), 0 0 28px -4px rgba(255, 211, 106, 0.35);
+}
+
+.glass-card-hover {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.glass-card-hover:hover {
+  transform: translateY(-4px);
+  border-color: rgba(181, 0, 58, 0.4);
+  box-shadow: 0 18px 42px -12px rgba(181, 0, 58, 0.16), 0 0 24px -4px rgba(217, 154, 36, 0.25);
+}
+
+/* High-Contrast Luxury Brand Gradients for Light Surfaces */
+.gradient-text-luxury {
+  background: linear-gradient(135deg, #B5003A 0%, #D41450 55%, #B87B0E 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-text-ruby {
+  background: linear-gradient(135deg, #B5003A 0%, #D41450 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bg-gradient-ruby-crimson {
+  background: linear-gradient(135deg, #B5003A 0%, #D41450 100%);
+}
+
+.bg-gradient-gold-champagne {
+  background: linear-gradient(135deg, #D99A24 0%, #FFD36A 100%);
+}
+
+.bg-gradient-luxury {
+  background: linear-gradient(135deg, #B5003A 0%, #D41450 55%, #D99A24 100%);
+}
+
+.glow-ruby {
+  box-shadow: 0 0 35px -5px rgba(181, 0, 58, 0.25);
+}
+
+.glow-gold {
+  box-shadow: 0 0 35px -5px rgba(217, 154, 36, 0.3);
+}
+
+/* Custom subtle luxury scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #FAF3E6;
+}
+::-webkit-scrollbar-thumb {
+  background: #D99A24;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #B5003A;
+}
+
+canvas {
+  touch-action: pan-y;
+}
