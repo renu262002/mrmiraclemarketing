@@ -1,4 +1,14 @@
+
 import { ServiceItem, WhyUsReason, ProcessStep, FAQItem } from '../types';
+
+import webImage from '../assets/images/service_web_development_1793850200984.jpg';
+import seoImage from '../assets/images/service_seo_1793850201434.jpg';
+import socialImage from '../assets/images/service_social_media_1793850201976.jpg';
+import metaImage from '../assets/images/service_meta_ads_1793850202484.jpg';
+import googleImage from '../assets/images/service_google_ads_1793850202492.jpg';
+import linkedinImage from '../assets/images/service_linkedin_branding_1793850202463.jpg';
+import emailImage from '../assets/images/service_email_marketing_1793850202807.jpg';
+import localSeoImage from '../assets/images/service_local_seo_1793850203175.jpg';
 
 export const COMPANY_INFO = {
   name: 'MR Miracle Digital Marketing Pvt. Ltd.',
@@ -36,7 +46,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     ctaLabel: 'Build Your Website',
     category: 'Engineering & Web',
     iconType: 'code',
-    image: '/src/assets/images/service_web_development_1793850200984.jpg',
+    image: webImage,
     deliverables: [
       'Custom Responsive Architecture (Desktop, Tablet, Mobile)',
       'High-Conversion UI/UX Design & Brand Aesthetics',
@@ -66,7 +76,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     ctaLabel: 'Grow Organic Rankings',
     category: 'Organic & SEO',
     iconType: 'search',
-    image: '/src/assets/images/service_seo_1793850201434.jpg',
+    image: seoImage,
     deliverables: [
       'In-Depth Technical Crawl & Site Health Audits',
       'Competitive Gap Analysis & High-Intent Keyword Mapping',
@@ -96,7 +106,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     ctaLabel: 'Elevate Social Presence',
     category: 'Social & Branding',
     iconType: 'share',
-    image: '/src/assets/images/service_social_media_1793850201976.jpg',
+    image: socialImage,
     deliverables: [
       'Brand Social Identity & Visual Content Grid Strategy',
       'High-Impact Graphic Design, Reels & Motion Assets',
@@ -126,7 +136,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     ctaLabel: 'Launch Meta Campaigns',
     category: 'Paid Ads',
     iconType: 'target',
-    image: '/src/assets/images/service_meta_ads_1793850202484.jpg',
+    image: metaImage,
     deliverables: [
       'Full-Funnel Campaign Architecture (Top, Mid & Bottom of Funnel)',
       'High-Converting Ad Creatives & Direct-Response Copywriting',
@@ -156,7 +166,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     ctaLabel: 'Capture Search Demand',
     category: 'Paid Ads',
     iconType: 'ad',
-    image: '/src/assets/images/service_google_ads_1793850202492.jpg',
+    image: googleImage,
     deliverables: [
       'High-Intent Search Campaign Structure & Negative Keyword Lists',
       'Compelling Responsive Search Ads (RSAs) & Ad Extensions',
@@ -186,7 +196,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     ctaLabel: 'Build Executive Authority',
     category: 'Social & Branding',
     iconType: 'linkedin',
-    image: '/src/assets/images/service_linkedin_branding_1793850202463.jpg',
+    image: linkedinImage,
     deliverables: [
       'Executive Profile Positioning & Banner/Headline Optimization',
       'Weekly Thought-Leadership Ghostwriting & Storytelling',
@@ -216,7 +226,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     ctaLabel: 'Automate Email Growth',
     category: 'Email & Automation',
     iconType: 'email',
-    image: '/src/assets/images/service_email_marketing_1793850202807.jpg',
+    image: emailImage,
     deliverables: [
       'Automated Welcome, Nurture & Cart/Lead Recovery Flows',
       'Bespoke Responsive Newsletter Design & Copywriting',
@@ -246,7 +256,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     ctaLabel: 'Dominate Local Search',
     category: 'Organic & SEO',
     iconType: 'local',
-    image: '/src/assets/images/service_local_seo_1793850203175.jpg',
+    image: localSeoImage,
     deliverables: [
       'Google Business Profile (GBP) Complete Optimization & Posts',
       'Local Map-Pack Ranking Strategy & Geo-Grid Tracking',
