@@ -47,6 +47,7 @@ export const Contact: React.FC = () => {
 
   const [errors, setErrors] = useState<Partial<Record<keyof ContactFormData, string>>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [submittedData, setSubmittedData] = useState<ContactFormData | null>(null);
 
@@ -89,17 +90,34 @@ export const Contact: React.FC = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!validate()) return;
+    if (isSubmitting || !validate()) return;
 
     setIsSubmitting(true);
-
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitted(true);
+    setSubmitError('');
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/mr.miraclemktg@gmail.com', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          _subject: 'New Website Enquiry | MR Miracle Digital Marketing',
+          _template: 'table',
+          name: formData.fullName,
+          email: formData.email,
+          phone: formData.phone,
+          company: formData.companyName,
+          service: formData.service,
+          message: formData.projectDetails,
+          submittedAt: new Date().toISOString()
+        })
+      });
+      const result = await response.json();
+      if (!response.ok || (result.success !== true && result.success !== 'true')) {
+        throw new Error('Submission was not accepted');
+      }
       setSubmittedData({ ...formData });
-
+      setSubmitted(true);
       try {
         confetti({
           particleCount: 85,
@@ -110,10 +128,15 @@ export const Contact: React.FC = () => {
       } catch {
         // Confetti optional
       }
-    }, 450);
+    } catch {
+      setSubmitError('We could not submit your enquiry. Please try again or email mr.miraclemktg@gmail.com directly.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleReset = () => {
+    setSubmitError('');
     setSubmitted(false);
     setSubmittedData(null);
     setFormData({
@@ -232,10 +255,10 @@ export const Contact: React.FC = () => {
                   <div>
                     <div className="font-medium text-[#1A1115]">Direct Inquiries</div>
                     <a
-                      href={`mailto:${COMPANY_INFO.contactEmail}`}
+                      href={`mailto:${'mr.miraclemktg@gmail.com'}`}
                       className="text-[#B5003A] hover:text-[#D41450] font-medium text-xs transition-colors"
                     >
-                      {COMPANY_INFO.contactEmail}
+                      {'mr.miraclemktg@gmail.com'}
                     </a>
                   </div>
                 </div>
@@ -290,14 +313,14 @@ export const Contact: React.FC = () => {
 
                   <div className="space-y-2">
                     <span className="text-xs font-semibold text-[#B5003A] uppercase tracking-widest">
-                      Enquiry Prepared
+                      Enquiry Submitted
                     </span>
                     <h2 className="text-3xl font-heading font-bold text-[#1A1115]">
                       Thank You, {submittedData?.fullName}!
                     </h2>
                     <p className="text-[#4A3B41] text-base max-w-md mx-auto">
                       Your consultation details for{' '}
-                      <span className="text-[#B5003A] font-semibold">{submittedData?.service}</span> are ready. Click below to send directly via your email client or review your summary.
+                      <span className="text-[#B5003A] font-semibold">{submittedData?.service}</span> have been submitted. Our team will review your enquiry.
                     </p>
                   </div>
 
@@ -318,14 +341,14 @@ export const Contact: React.FC = () => {
 
                   <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
                     <a
-                      href={`mailto:${COMPANY_INFO.contactEmail}?subject=${encodeURIComponent(
+                      href={`mailto:${'mr.miraclemktg@gmail.com'}?subject=${encodeURIComponent(
                         `Project Inquiry from ${submittedData?.fullName} (${submittedData?.companyName})`
                       )}&body=${encodeURIComponent(
                         `Hello MR Miracle Team,\n\nName: ${submittedData?.fullName}\nCompany: ${submittedData?.companyName}\nEmail: ${submittedData?.email}\nPhone: ${submittedData?.phone}\nService: ${submittedData?.service}\n\nProject Details:\n${submittedData?.projectDetails}`
                       )}`}
                       className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full font-semibold text-white bg-gradient-to-r from-[#B5003A] to-[#D41450] shadow-[0_6px_20px_rgba(181,0,58,0.28)]"
                     >
-                      <span>Send via Email Client</span>
+                      <span>Email Us Directly</span>
                       <ArrowUpRight className="w-4 h-4" />
                     </a>
 
@@ -511,6 +534,9 @@ export const Contact: React.FC = () => {
                     )}
                   </div>
 
+                  {submitError && (
+                    <p role="alert" className="text-sm text-[#B5003A]">{submitError}</p>
+                  )}
                   <div className="pt-2">
                     <button
                       type="submit"
@@ -520,7 +546,7 @@ export const Contact: React.FC = () => {
                       {isSubmitting ? (
                         <>
                           <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                          <span>Preparing Enquiry...</span>
+                          <span>Sending Enquiry...</span>
                         </>
                       ) : (
                         <>
@@ -532,7 +558,7 @@ export const Contact: React.FC = () => {
                   </div>
 
                   <div className="text-center text-[11px] text-[#6E5B62]">
-                    Your enquiry is formatted locally so you can review and send it directly to {COMPANY_INFO.contactEmail}.
+                    Your enquiry will be submitted directly to {'mr.miraclemktg@gmail.com'}.
                   </div>
                 </form>
               )}
